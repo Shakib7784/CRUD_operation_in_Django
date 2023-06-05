@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Show Book{% endblock title %}
+
+{% block  content%}
+<div class="container py-5 my-5"> 
+    {% if book %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Book Name</th>
+                <th scope="col">Authon Name</th>
+                <th scope="col">Category</th>
+                <th scope="col">First Publication</th>
+                <th scope="col">Last Publication</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for b in  book %}
+            <tr>
+                <td>{{b.id}}</td>
+                <td>{{b.Book_name}}</td>
+                <td>{{b.Author_name}}</td>
+                <td>{{b.category}}</td>
+                <td>{{b.first_pub}}</td>
+                <td>{{b.last_pub}}</td>
+                <td>
+                    <a class="btn btn-sm btn-warning" href=" {% url 'edit' b.id %} ">Edit</a>
+                    <a class="btn btn-sm btn-primary" href="{% url 'delete' b.id %}">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <h3>There is no data</h3>
+    {% endif %}
+</div>
+{% endblock content %}
